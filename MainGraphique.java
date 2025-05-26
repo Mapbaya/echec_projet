@@ -70,8 +70,9 @@ class MainGraphique{
     }
     
     public static void main(String[] args) {
-		Plateau p = new Plateau();
-		Fenetre f = new Fenetre("Jeu d'échecs", 8 * MainGraphique.tailleCase, 10 * MainGraphique.tailleCase);
+		boolean modeCheat = true; // Par défaut, on utilise le mode cheat
+		Plateau p = new Plateau(modeCheat);
+		Fenetre f = new Fenetre("Jeu d'échecs" + (modeCheat ? " (Mode Cheat)" : ""), 8 * MainGraphique.tailleCase, 10 * MainGraphique.tailleCase);
 		Souris souris = f.getSouris();
 		char couleurQuiJoue = 'B';  // Au début, c'est les blancs qui jouent
 	

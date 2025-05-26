@@ -7,41 +7,119 @@ class Plateau{
 	pieces = new ArrayList<Piece>();
 	this.ajouterPiece(new Tour('B', new Position("A1")));
 	this.ajouterPiece(new Cavalier('B', new Position("B1")));
-	this.ajouterPiece(new Tavalier('B', new Position("C1")));
+	this.ajouterPiece(new Fou('B', new Position("C1")));
 	this.ajouterPiece(new Dame('B', new Position("D1")));
 	this.ajouterPiece(new Roi('B', new Position("E1")));
-	this.ajouterPiece(new Tavalier('B', new Position("F1")));
+	this.ajouterPiece(new Fou('B', new Position("F1")));
 	this.ajouterPiece(new Cavalier('B', new Position("G1")));
 	this.ajouterPiece(new Tour('B', new Position("H1")));
 
 	this.ajouterPiece(new PionBlanc(new Position("A2")));
 	this.ajouterPiece(new PionBlanc(new Position("B2")));
-	this.ajouterPiece(new Favalier('B', new Position("C2")));
+	this.ajouterPiece(new PionBlanc(new Position("C2")));
 	this.ajouterPiece(new PionBlanc(new Position("D2")));
 	this.ajouterPiece(new PionBlanc(new Position("E2")));
-	this.ajouterPiece(new Favalier('B', new Position("F2")));
+	this.ajouterPiece(new PionBlanc(new Position("F2")));
 	this.ajouterPiece(new PionBlanc(new Position("G2")));
 	this.ajouterPiece(new PionBlanc(new Position("H2")));
 
 	this.ajouterPiece(new Tour('N', new Position("A8")));
 	this.ajouterPiece(new Cavalier('N', new Position("B8")));
-	this.ajouterPiece(new Tavalier('N', new Position("C8")));
+	this.ajouterPiece(new Fou('N', new Position("C8")));
 	this.ajouterPiece(new Dame('N', new Position("D8")));
 	this.ajouterPiece(new Roi('N', new Position("E8")));
-	this.ajouterPiece(new Tavalier('N', new Position("F8")));
+	this.ajouterPiece(new Fou('N', new Position("F8")));
 	this.ajouterPiece(new Cavalier('N', new Position("G8")));
 	this.ajouterPiece(new Tour('N', new Position("H8")));
 
 	this.ajouterPiece(new PionNoir(new Position("A7")));
 	this.ajouterPiece(new PionNoir(new Position("B7")));
-	this.ajouterPiece(new Favalier('N', new Position("C7")));
+	this.ajouterPiece(new PionNoir(new Position("C7")));
 	this.ajouterPiece(new PionNoir(new Position("D7")));
 	this.ajouterPiece(new PionNoir(new Position("E7")));
-	this.ajouterPiece(new Favalier('N', new Position("F7")));
+	this.ajouterPiece(new PionNoir(new Position("F7")));
 	this.ajouterPiece(new PionNoir(new Position("G7")));
 	this.ajouterPiece(new PionNoir(new Position("H7")));
     }
 
+    public Plateau(boolean cheat){
+	pieces = new ArrayList<Piece>();
+	if (!cheat) {
+	    // Utiliser le constructeur par défaut pour un plateau classique
+	    this.ajouterPiece(new Tour('B', new Position("A1")));
+	    this.ajouterPiece(new Cavalier('B', new Position("B1")));
+	    this.ajouterPiece(new Fou('B', new Position("C1")));
+	    this.ajouterPiece(new Dame('B', new Position("D1")));
+	    this.ajouterPiece(new Roi('B', new Position("E1")));
+	    this.ajouterPiece(new Fou('B', new Position("F1")));
+	    this.ajouterPiece(new Cavalier('B', new Position("G1")));
+	    this.ajouterPiece(new Tour('B', new Position("H1")));
+
+	    this.ajouterPiece(new PionBlanc(new Position("A2")));
+	    this.ajouterPiece(new PionBlanc(new Position("B2")));
+	    this.ajouterPiece(new PionBlanc(new Position("C2")));
+	    this.ajouterPiece(new PionBlanc(new Position("D2")));
+	    this.ajouterPiece(new PionBlanc(new Position("E2")));
+	    this.ajouterPiece(new PionBlanc(new Position("F2")));
+	    this.ajouterPiece(new PionBlanc(new Position("G2")));
+	    this.ajouterPiece(new PionBlanc(new Position("H2")));
+
+	    this.ajouterPiece(new Tour('N', new Position("A8")));
+	    this.ajouterPiece(new Cavalier('N', new Position("B8")));
+	    this.ajouterPiece(new Fou('N', new Position("C8")));
+	    this.ajouterPiece(new Dame('N', new Position("D8")));
+	    this.ajouterPiece(new Roi('N', new Position("E8")));
+	    this.ajouterPiece(new Fou('N', new Position("F8")));
+	    this.ajouterPiece(new Cavalier('N', new Position("G8")));
+	    this.ajouterPiece(new Tour('N', new Position("H8")));
+
+	    this.ajouterPiece(new PionNoir(new Position("A7")));
+	    this.ajouterPiece(new PionNoir(new Position("B7")));
+	    this.ajouterPiece(new PionNoir(new Position("C7")));
+	    this.ajouterPiece(new PionNoir(new Position("D7")));
+	    this.ajouterPiece(new PionNoir(new Position("E7")));
+	    this.ajouterPiece(new PionNoir(new Position("F7")));
+	    this.ajouterPiece(new PionNoir(new Position("G7")));
+	    this.ajouterPiece(new PionNoir(new Position("H7")));
+	} else {
+	    // Plateau avec les nouvelles pièces
+	    this.ajouterPiece(new Tour('B', new Position("A1")));
+	    this.ajouterPiece(new Cavalier('B', new Position("B1")));
+	    this.ajouterPiece(new Tavalier('B', new Position("C1")));
+	    this.ajouterPiece(new Dame('B', new Position("D1")));
+	    this.ajouterPiece(new Roi('B', new Position("E1")));
+	    this.ajouterPiece(new Tavalier('B', new Position("F1")));
+	    this.ajouterPiece(new Cavalier('B', new Position("G1")));
+	    this.ajouterPiece(new Tour('B', new Position("H1")));
+
+	    this.ajouterPiece(new PionBlanc(new Position("A2")));
+	    this.ajouterPiece(new PionBlanc(new Position("B2")));
+	    this.ajouterPiece(new Favalier('B', new Position("C2")));
+	    this.ajouterPiece(new PionBlanc(new Position("D2")));
+	    this.ajouterPiece(new PionBlanc(new Position("E2")));
+	    this.ajouterPiece(new Favalier('B', new Position("F2")));
+	    this.ajouterPiece(new PionBlanc(new Position("G2")));
+	    this.ajouterPiece(new PionBlanc(new Position("H2")));
+
+	    this.ajouterPiece(new Tour('N', new Position("A8")));
+	    this.ajouterPiece(new Cavalier('N', new Position("B8")));
+	    this.ajouterPiece(new Tavalier('N', new Position("C8")));
+	    this.ajouterPiece(new Dame('N', new Position("D8")));
+	    this.ajouterPiece(new Roi('N', new Position("E8")));
+	    this.ajouterPiece(new Tavalier('N', new Position("F8")));
+	    this.ajouterPiece(new Cavalier('N', new Position("G8")));
+	    this.ajouterPiece(new Tour('N', new Position("H8")));
+
+	    this.ajouterPiece(new PionNoir(new Position("A7")));
+	    this.ajouterPiece(new PionNoir(new Position("B7")));
+	    this.ajouterPiece(new Favalier('N', new Position("C7")));
+	    this.ajouterPiece(new PionNoir(new Position("D7")));
+	    this.ajouterPiece(new PionNoir(new Position("E7")));
+	    this.ajouterPiece(new Favalier('N', new Position("F7")));
+	    this.ajouterPiece(new PionNoir(new Position("G7")));
+	    this.ajouterPiece(new PionNoir(new Position("H7")));
+	}
+    }
 
     private boolean ajouterPiece(Piece p){
 	// Vérifier si une pièce n'est pas déjà placé sur la case.
