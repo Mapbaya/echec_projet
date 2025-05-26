@@ -38,3 +38,7 @@ class Dame extends Piece{
 
     
 }
+
+/**Étudiant 1
+Il doit ajouter le Tavalier qui combine les déplacements possibles de la tour et du
+cavalier. Cette pièce se placera à la place des pions devant les fous. */

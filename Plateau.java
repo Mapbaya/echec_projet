@@ -42,6 +42,10 @@ class Plateau{
 	this.ajouterPiece(new PionNoir(new Position("H7")));
     }
 
+    /**
+     * Constructeur permettant de choisir entre le mode classique et le mode cheat.
+     * @param cheat Si true, le plateau est rempli avec les nouvelles pièces (Tavalier et Favalier). Si false, plateau classique.
+     */
     public Plateau(boolean cheat){
 	pieces = new ArrayList<Piece>();
 	if (!cheat) {

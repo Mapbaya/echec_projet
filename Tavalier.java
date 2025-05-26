@@ -15,7 +15,7 @@ class Tavalier extends Piece {
         
         Tour t = new Tour(this.getCouleur(), this.getPosition());
         Cavalier c = new Cavalier(this.getCouleur(), this.getPosition());
-        
+
         retour.addAll(t.getDeplacementPossible(pl));
         retour.addAll(c.getDeplacementPossible(pl));
         

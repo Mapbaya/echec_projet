@@ -70,84 +70,85 @@ class MainGraphique{
     }
     
     public static void main(String[] args) {
-		boolean modeCheat = true; // Par défaut, on utilise le mode cheat
-		Plateau p = new Plateau(modeCheat);
-		Fenetre f = new Fenetre("Jeu d'échecs" + (modeCheat ? " (Mode Cheat)" : ""), 8 * MainGraphique.tailleCase, 10 * MainGraphique.tailleCase);
-		Souris souris = f.getSouris();
-		char couleurQuiJoue = 'B';  // Au début, c'est les blancs qui jouent
+        // Mode cheat activé : Plateau avec Tavalier et Favalier
+        boolean modeCheat = true; // Mettre à false pour le mode classique
+        Plateau p = new Plateau(modeCheat);
+        Fenetre f = new Fenetre("Jeu d'échecs" + (modeCheat ? " (Mode Cheat)" : ""), 8 * MainGraphique.tailleCase, 10 * MainGraphique.tailleCase);
+        Souris souris = f.getSouris();
+        char couleurQuiJoue = 'B';  // Au début, c'est les blancs qui jouent
 	
-		Piece selectionne1 = null;
-		Position selectionne2 = null;
+        Piece selectionne1 = null;
+        Position selectionne2 = null;
 	
-		dessinerPlateau(f, p, couleurQuiJoue);
-		f.rafraichir();
+        dessinerPlateau(f, p, couleurQuiJoue);
+        f.rafraichir();
 	
-		while (true) {
-			// Sélectionner la première pièce (toujours la pièce du joueur actuel)
-			while (selectionne1 == null) {
-				while (!souris.getClicGauche()) {
-					try {
-						Thread.sleep(10);
-					} catch (Exception e) {
-					}
-				}
-				int indX = souris.getPosition().getX() / MainGraphique.tailleCase;
-				int indY = souris.getPosition().getY() / MainGraphique.tailleCase;
-				if ((indX >= 0) && (indX <= 7) && (indY >= 0) && (indY <= 7)) {
-					Piece pieceSelectionnee = p.getCase(indX, indY);
-					if (pieceSelectionnee != null && pieceSelectionnee.getCouleur() == couleurQuiJoue) {
-						selectionne1 = pieceSelectionnee; // Première sélection de la pièce
-						// Affiche les déplacements possibles de la pièce
-						afficheDepPossible(f, pieceSelectionnee.getDeplacementPossible(p));
-					}
-				}
-			}
+        while (true) {
+            // Sélectionner la première pièce (toujours la pièce du joueur actuel)
+            while (selectionne1 == null) {
+                while (!souris.getClicGauche()) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (Exception e) {
+                    }
+                }
+                int indX = souris.getPosition().getX() / MainGraphique.tailleCase;
+                int indY = souris.getPosition().getY() / MainGraphique.tailleCase;
+                if ((indX >= 0) && (indX <= 7) && (indY >= 0) && (indY <= 7)) {
+                    Piece pieceSelectionnee = p.getCase(indX, indY);
+                    if (pieceSelectionnee != null && pieceSelectionnee.getCouleur() == couleurQuiJoue) {
+                        selectionne1 = pieceSelectionnee; // Première sélection de la pièce
+                        // Affiche les déplacements possibles de la pièce
+                        afficheDepPossible(f, pieceSelectionnee.getDeplacementPossible(p));
+                    }
+                }
+            }
 	
-			// Sélectionner la deuxième case (cible de déplacement)
-			while (selectionne2 == null) {
-				while (!souris.getClicGauche()) {
-					try {
-						Thread.sleep(10);
-					} catch (Exception e) {
-					}
-				}
-				int indX = souris.getPosition().getX() / MainGraphique.tailleCase;
-				int indY = souris.getPosition().getY() / MainGraphique.tailleCase;
+            // Sélectionner la deuxième case (cible de déplacement)
+            while (selectionne2 == null) {
+                while (!souris.getClicGauche()) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (Exception e) {
+                    }
+                }
+                int indX = souris.getPosition().getX() / MainGraphique.tailleCase;
+                int indY = souris.getPosition().getY() / MainGraphique.tailleCase;
 	
-				// Vérifie si la case est valide
-				if ((indX >= 0) && (indX <= 7) && (indY >= 0) && (indY <= 7)) {
-					selectionne2 = new Position(indX, indY);
-				}
-			}
+                // Vérifie si la case est valide
+                if ((indX >= 0) && (indX <= 7) && (indY >= 0) && (indY <= 7)) {
+                    selectionne2 = new Position(indX, indY);
+                }
+            }
 	
-			// Vérifie si le déplacement est valide et effectue le déplacement
-			try {
-				// Lève une exception si le coup est invalide
-				ArrayList<Position> possibilites = selectionne1.getDeplacementPossible(p);
-				if (!possibilites.contains(selectionne2)) {
-					throw new ErreurDeplacementException("Déplacement invalide de " + selectionne1 + " à " + selectionne2);
-				}
+            // Vérifie si le déplacement est valide et effectue le déplacement
+            try {
+                // Lève une exception si le coup est invalide
+                ArrayList<Position> possibilites = selectionne1.getDeplacementPossible(p);
+                if (!possibilites.contains(selectionne2)) {
+                    throw new ErreurDeplacementException("Déplacement invalide de " + selectionne1 + " à " + selectionne2);
+                }
 	
-				// Effectue le déplacement
-				p.deplacer(selectionne1.getPosition(), selectionne2);
+                // Effectue le déplacement
+                p.deplacer(selectionne1.getPosition(), selectionne2);
 	
-				// Réinitialise la sélection pour le prochain tour
-				selectionne1 = null;
-				selectionne2 = null;
+                // Réinitialise la sélection pour le prochain tour
+                selectionne1 = null;
+                selectionne2 = null;
 	
-				// Change le joueur après le déplacement
-				couleurQuiJoue = (couleurQuiJoue == 'B') ? 'N' : 'B'; // Alterne entre 'B' et 'N'
+                // Change le joueur après le déplacement
+                couleurQuiJoue = (couleurQuiJoue == 'B') ? 'N' : 'B'; // Alterne entre 'B' et 'N'
 	
-				// Dessiner à nouveau le plateau après chaque mouvement
-				dessinerPlateau(f, p, couleurQuiJoue);
-				f.rafraichir();
+                // Dessiner à nouveau le plateau après chaque mouvement
+                dessinerPlateau(f, p, couleurQuiJoue);
+                f.rafraichir();
 	
-			} catch (ErreurDeplacementException e) {
-				// Si une exception est levée, on affiche le message et on recommence
-				System.out.println(e.getMessage());
-				selectionne2 = null; // Redemande la case d'arrivée
-			}
-		}
-	}
+            } catch (ErreurDeplacementException e) {
+                // Si une exception est levée, on affiche le message et on recommence
+                System.out.println(e.getMessage());
+                selectionne2 = null; // Redemande la case d'arrivée
+            }
+        }
+    }
 	
 }
